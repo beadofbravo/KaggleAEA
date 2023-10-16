@@ -6,6 +6,11 @@ library(DataExplorer)
 library(ggmosaic)
 library(tidymodels)
 library(embed)
+library(doParallel)
+
+
+## cl <- makePSOCKcluster(8)
+## registerDoParallel(cl)
 
 empl_access_train <- vroom("./train.csv") %>%
   mutate(ACTION = factor(ACTION))
@@ -47,7 +52,7 @@ amazon_predictions_lr <- amazon_predictions_lr %>%
 view(amazon_predictions_lr)
 vroom_write(x=amazon_predictions_lr, file="./lr.csv", delim=",")
 
-
+## stopCluster(cl)
 
 ###################################
 ## Penalized Logistic Regression ##
@@ -100,8 +105,8 @@ amazon_predictions_plr <- plr_predictions %>%
 
 vroom_write(x=amazon_predictions_plr, file="./plr.csv", delim=",")
 
-
-
+save(file = "filename.RData", list = c("plr_wf"))
+load("filename.RData")
 
 
 
