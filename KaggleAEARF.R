@@ -63,7 +63,7 @@ amazon_predictions_plr <- plr_predictions %>%
 vroom_write(x=amazon_predictions_plr, file="./crf.csv", delim=",")
 
 stopCluster(cl)
-
+ 
 
 
 
