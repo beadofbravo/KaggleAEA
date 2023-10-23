@@ -18,7 +18,7 @@ empl_access_test <- vroom("./test.csv")
 
 my_recipe_crt <- recipe(ACTION ~., data = empl_access_train) %>%
   step_mutate_at(all_numeric_predictors(), fn = factor) %>%
-  step_other(all_factor_predictors(), threshold = .01) %>%
+  step_other(all_factor_predictors(), threshold = .001) %>%
   step_dummy(all_nominal_predictors()) %>%
   prep()
 
